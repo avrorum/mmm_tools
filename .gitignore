@@ -164,3 +164,4 @@ artefacts/
 temp/
 
 *.zip
+*.S_Store  

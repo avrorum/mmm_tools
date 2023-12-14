@@ -44,6 +44,14 @@ def save_weights():
 
 
 # penalty tips (lasso, ridge, elasticnet)
+def penalty_tips():
+    '''
+    ?
+    '''
+    pass
+
+
+# restore values for decomposition and share of kpi per factor
 def make_decomposition(model):
     pass
 

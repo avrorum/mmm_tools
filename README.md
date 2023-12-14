@@ -18,6 +18,16 @@ import mmm_tools
 
 ```
 
+Updating package on daily basis for users:
+
+```bash
+$ git pull --rebase
+$ poetry build
+$ poetry install
+
+```
+
+
 Workflow is seen as Jupyter Notebook where mmm_tools is imported.
 Notebook contains main stages of analysis with some boilerplate code, 
 that could (and should) be adopted to specific data set

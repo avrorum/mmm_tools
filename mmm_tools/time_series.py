@@ -6,19 +6,9 @@ import seaborn as sns
 import pandas as pd
 
 
+# done
+
 # find seasonality in data, decompose data
-
-# decompose with stl
-
-# decompose with prophet
-
-# transformations
-
-# find forms of time model - arima (autoarima)
-
-# find forms of time model - sarima
-
-# find forms of time model - sarimax
 
 # build additive model naive
 def decompose_additive(df, col='y', model='additive', period=PERIOD):
@@ -35,14 +25,16 @@ def decompose_multiplicative(df, col='y', model='multiplicative', period=PERIOD)
 
 
 # STL decomposition
-def make_stl(y):
-    res_stl = STL(y).fit()
+def decompose_stl(y):
+    model = STL(y).fit()
     df_timeseries = pd.DataFrame(y)
-    df_timeseries['res_stl_resid'] = res_stl.resid
-    df_timeseries['res_stl_trend'] = res_stl.trend
-    df_timeseries['res_stl_seasonal'] = res_stl.seasonal
+    df_timeseries['residuals'] = model.resid
+    df_timeseries['trend'] = model.trend
+    df_timeseries['seasonality'] = model.seasonal
     return df_timeseries
 
+
+# todo
 
 # decompose data with prophet 
 def decompose_prophet(df, target='y'):
@@ -59,7 +51,6 @@ def decompose_prophet(df, target='y'):
     forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
     fig = model.plot_components(forecast)
     plt.show()
-
 
 
 # check trend break
@@ -80,6 +71,7 @@ def check_stationarity(df, target='y'):
     '''
     return
 
+
 # transformation box-cox
 def transform_box_cox(df, target='y'):
     '''
@@ -89,10 +81,15 @@ def transform_box_cox(df, target='y'):
     return
 
 
-# smoothing with window (2-3-x)
+# transformations (exp smoothing)
 
+# smoothing with window (2-3-x)
 
 # pacf - acf correlologramms
 
+# find forms of time model - arima (autoarima)
 
+# find forms of time model - sarima
+
+# find forms of time model - sarimax
 

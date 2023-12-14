@@ -1,9 +1,6 @@
-
-# check distribution and normality of data vars
-
-# check correlations
-
-# find outliers
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def print_data_info(df):
@@ -44,4 +41,11 @@ def print_data_info(df):
     plt.tight_layout()
     plt.show()
 
+# todo:
+# find outliers
+def find_outliers():
+    pass
 
+# test normality of data
+def test_normality():
+    pass

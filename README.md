@@ -1,4 +1,4 @@
-# Scripts set for data processing and analysis in Marketing Mix Modelling projects
+# Scripts set for data processing and analysis in MMM projects
 
 ```
 $ poetry shell

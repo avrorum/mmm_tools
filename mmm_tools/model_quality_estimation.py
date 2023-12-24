@@ -60,6 +60,15 @@ def b_godfri():
     '''
     pass
 
+
+# Hausman test
+def test_hausman():
+    '''
+    '''
+    pass
+
+
+
 # exo / endo genitiy check
 
 # other quality metrics of model mse, mae etc

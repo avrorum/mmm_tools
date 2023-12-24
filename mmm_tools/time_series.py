@@ -28,29 +28,36 @@ def decompose_multiplicative(df, col='y', model='multiplicative', period=PERIOD)
 def decompose_stl(y):
     model = STL(y).fit()
     df_timeseries = pd.DataFrame(y)
-    df_timeseries['residuals'] = model.resid
-    df_timeseries['trend'] = model.trend
-    df_timeseries['seasonality'] = model.seasonal
+    df_timeseries['residuals_stl'] = model.resid
+    df_timeseries['trend_stl'] = model.trend
+    df_timeseries['seasonality_stl'] = model.seasonal
     return df_timeseries
 
 
-# todo
-
 # decompose data with prophet 
-def decompose_prophet(df, target='y'):
+def decompose_prophet_basic(df, y, multi=False):
+    '''
+    df - full df with date in index
+    y - target metric
+    '''
+    temp = df[[y]]
+    temp.reset_index(inplace=True)
+    temp.columns = ['ds', 'y']
 
-    temp = pd.DataFrame({
-        'y': df[target],
-        'ds': df['date']
-    })
-
-    model = Prophet()
+    if multi:
+        model = Prophet(seasonality_mode='multiplicative')
+    
+    else:
+        model = Prophet(seasonality_mode='additive')
+    
     model.fit(temp)
-    future = model.make_future_dataframe(periods=365)
+    future = model.make_future_dataframe(0)
     forecast = model.predict(future)
-    forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
-    fig = model.plot_components(forecast)
-    plt.show()
+
+    df_prophet_extracted = forecast.copy()
+    df_prophet_extracted.index = df_prophet_extracted['ds']
+
+    return df_prophet_extracted
 
 
 # check trend break
